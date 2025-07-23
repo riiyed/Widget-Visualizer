@@ -359,7 +359,7 @@ This project is licensed under the **MIT License** - see the [LICENSE.md](LICENS
 
 ## 👥 Authors & Contributors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Your Name** - *Riyanka* - [YourGitHub](https://github.com/riiyed)
 
 ## 🙏 Acknowledgments
 
