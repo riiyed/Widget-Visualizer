@@ -1,6 +1,6 @@
 # Widget-Visualizer
 
-A full-stack financial dashboard and financial data visualization web application built with Spring Boot, Angular, and PostgreSQL. It includes secure JWT-based authentication, role-based access control, and BCrypt password encryption. Users can register, log in, and create personalized financial graphs with configurations saved per user in a flexible JSON column. The backend handles sensitive loan parameters securely, while the frontend offers a responsive UI for dynamic data visualization. Designed with a modular architecture for scalability and maintainability.
+A full-stack financial dashboard and data visualization web application built with Spring Boot, Angular, and PostgreSQL. It includes secure JWT-based authentication, role-based access control, and BCrypt password encryption. Users can register, log in, and create personalized financial graphs with configurations saved per user in a flexible JSON column.
 
 ## 🏗️ Architecture Overview
 
