@@ -2,7 +2,7 @@
 
 A comprehensive full-stack financial dashboard and data visualization web application built with **Spring Boot**, **Angular**, and **PostgreSQL**. Features secure JWT-based authentication, role-based access control, dynamic database connections, and interactive chart generation with real-time data visualization capabilities.
 
-![Dashboard Preview](https://via.placeholder.com/800x400/3498db/ffffff?text=Widget+Visualizer+Dashboard)
+
 
 ## 🌟 Key Features
 
