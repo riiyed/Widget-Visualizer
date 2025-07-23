@@ -1,6 +1,19 @@
 # Widget-Visualizer
 
-A full-stack financial dashboard and data visualization web application built with Spring Boot, Angular, and PostgreSQL. It includes secure JWT-based authentication, role-based access control, and BCrypt password encryption. Users can register, log in, and create personalized financial graphs with configurations saved per user in a flexible JSON column.
+A comprehensive full-stack financial dashboard and data visualization web application built with **Spring Boot**, **Angular**, and **PostgreSQL**. Features secure JWT-based authentication, role-based access control, dynamic database connections, and interactive chart generation with real-time data visualization capabilities.
+
+![Dashboard Preview](https://via.placeholder.com/800x400/3498db/ffffff?text=Widget+Visualizer+Dashboard)
+
+## 🌟 Key Features
+
+- **🔐 Secure Authentication**: JWT-based login/logout with BCrypt password encryption
+- **👥 Role-Based Access Control**: User and Admin roles with method-level security
+- **🗄️ Dynamic Database Connectivity**: Connect to external databases on-the-fly
+- **📊 Interactive Data Visualization**: Create Bar, Line, and Area charts using AG Charts
+- **💾 Graph Persistence**: Save and load user-specific chart configurations
+- **📱 Responsive Design**: Modern dashboard with sidebar navigation
+- **⚡ Real-time Updates**: Live chart updates based on query results
+- **🔍 Dynamic Query Execution**: Run custom SQL queries on connected databases
 
 ## 🏗️ Architecture Overview
 
@@ -13,51 +26,40 @@ A full-stack financial dashboard and data visualization web application built wi
 └─────────────────┘                     └─────────────────┘            └─────────────────┘
 ```
 
-## 🚀 Features
-
-- **JWT Authentication**: Secure login/logout with Bearer token
-- **Role-Based Access Control**: User and Admin roles
-- **Dynamic Database Connection**: Connect to external databases
-- **Dynamic Query Execution**: Run SQL queries on connected databases
-- **Interactive Charts**: Create Bar, Line, and Area charts using AG Charts
-- **Graph Persistence**: Save and load user-specific graph configurations
-- **Responsive Dashboard**: Modern UI with sidebar navigation
-- **Real-time Data Visualization**: Live chart updates based on query results
-
 ## 🛠️ Technology Stack
 
-### Backend
-- **Spring Boot 3.5.0** - Main framework
-- **Spring Security** - Authentication & Authorization
-- **Spring Data JPA** - Database operations
-- **PostgreSQL** - Primary database
-- **JWT (JJWT)** - Token-based authentication
-- **BCrypt** - Password encryption
-- **Lombok** - Boilerplate code reduction
+### Backend Technologies
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Spring Boot** | 3.5.0 | Main application framework |
+| **Spring Security** | Latest | Authentication & Authorization |
+| **Spring Data JPA** | Latest | Database operations |
+| **PostgreSQL** | 12+ | Primary database |
+| **JWT (JJWT)** | 0.11.5 | Token-based authentication |
+| **BCrypt** | Latest | Password encryption |
+| **Lombok** | 1.18.34 | Boilerplate code reduction |
 
-### Frontend
-- **Angular 16** - Frontend framework
-- **AG Charts** - Data visualization
-- **Bootstrap 5** - UI components
-- **RxJS** - Reactive programming
-- **TypeScript** - Type-safe JavaScript
-
-### Database
-- **PostgreSQL** - Primary database for user data and configurations
-- **Dynamic Database Support** - Connect to external databases for queries
+### Frontend Technologies
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Angular** | 16.2.0 | Frontend framework |
+| **AG Charts** | 10.3.5 | Data visualization |
+| **Bootstrap** | 5.3.7 | UI components |
+| **RxJS** | 7.8.0 | Reactive programming |
+| **TypeScript** | 5.1.3 | Type-safe JavaScript |
 
 ## 📋 Prerequisites
 
-Before you begin, ensure you have the following installed:
+Ensure you have the following installed on your system:
 
-- **Java 17** or higher
-- **Node.js 16** or higher
-- **npm** or **yarn**
-- **PostgreSQL 12** or higher
-- **Maven 3.6** or higher
-- **Git**
+- ☕ **Java 17** or higher
+- 🟢 **Node.js 16** or higher
+- 📦 **npm** or **yarn**
+- 🐘 **PostgreSQL 12** or higher
+- 🔨 **Maven 3.6** or higher
+- 🌿 **Git**
 
-## 🔧 Installation & Setup
+## 🚀 Quick Start Guide
 
 ### 1. Clone the Repository
 
@@ -77,20 +79,9 @@ CREATE USER postgres WITH PASSWORD 'System@123';
 GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
 ```
 
-#### Database Tables (Auto-created by Spring Boot)
-
-The application will automatically create the following tables:
-
-- `users` - User authentication data
-- `roles` - User roles (USER, ADMIN)
-- `user_roles` - Many-to-many relationship
-- `jsondata` - Saved graph configurations
-- `graphs` - Graph metadata
-- `database_info` - External database connections
-
 ### 3. Backend Setup
 
-#### Navigate to Backend Directory
+Navigate to the backend directory:
 
 ```bash
 cd backend/ReportingApp
@@ -105,12 +96,6 @@ Update `src/main/resources/application.properties`:
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
 spring.datasource.username=postgres
 spring.datasource.password=System@123
-spring.datasource.driver-class-name=org.postgresql.Driver
-
-# JPA Configuration
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 # JWT Configuration
 app.jwt-secret=bXlTdXBlclNlY3JldEtleU15U3VwZXJTZWNyZXRLZXlNeVN1cGVyU2VjcmV0S2V5MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=
@@ -134,7 +119,7 @@ The backend will start on `http://localhost:8080`
 
 ### 4. Frontend Setup
 
-#### Navigate to Frontend Directory
+Navigate to the frontend directory:
 
 ```bash
 cd frontend/Dynamicreport
@@ -154,107 +139,71 @@ ng serve
 
 The frontend will start on `http://localhost:4200`
 
-## 🔗 Backend-Frontend Integration
+## 📱 Application Features
 
-### 1. CORS Configuration
+### 🔐 Authentication System
 
-The backend is configured to allow requests from the Angular frontend:
+- **User Registration**: Create new accounts with role assignment
+- **Secure Login**: JWT token-based authentication
+- **Password Security**: BCrypt encryption for all passwords
+- **Session Management**: Automatic token refresh and logout
 
-```java
-@Bean
-public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration config = new CorsConfiguration();
-    config.setAllowedOrigins(List.of("http://localhost:4200"));
-    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-    config.setAllowedHeaders(List.of("*"));
-    config.setAllowCredentials(true);
-    
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", config);
-    return source;
-}
+### 📊 Dashboard Features
+
+- **Interactive Metrics**: Real-time loan analytics and statistics
+- **Chart Visualization**: Multiple chart types (Bar, Line, Area)
+- **Responsive Design**: Works seamlessly on all device sizes
+- **User Profile**: Personalized user experience
+
+### 🗄️ Database Management
+
+- **Dynamic Connections**: Connect to any PostgreSQL database
+- **Query Execution**: Run custom SQL queries
+- **Result Visualization**: Automatic chart generation from query results
+- **Data Persistence**: Save and load chart configurations
+
+## 🔗 API Endpoints
+
+### Authentication Endpoints
+```http
+POST /api/register    # User registration
+POST /api/login       # User login
 ```
 
-### 2. JWT Token Handling
-
-#### Backend JWT Generation
-
-```java
-public String generateToken(Authentication authentication) {
-    String username = authentication.getName();
-    Date currentDate = new Date();
-    Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
-
-    return Jwts.builder()
-            .setSubject(username)
-            .setIssuedAt(currentDate)
-            .setExpiration(expireDate)
-            .signWith(key(), SignatureAlgorithm.HS512)
-            .compact();
-}
+### User Management
+```http
+GET    /api/users/{id}        # Get user by ID
+POST   /api/users             # Create user
+PUT    /api/users/{id}/role   # Assign roles
 ```
 
-#### Frontend JWT Interceptor
-
-```typescript
-@Injectable()
-export class JwtInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
-
-    if (token) {
-      const cloned = req.clone({
-        setHeaders: {
-          Authorization: token // Already includes "Bearer"
-        }
-      });
-      return next.handle(cloned);
-    }
-
-    return next.handle(req);
-  }
-}
+### Database Operations
+```http
+POST /api/dynamic-query/connect        # Connect to external database
+POST /api/dynamic-query/execute-query  # Execute SQL query
 ```
 
-### 3. API Service Integration
+### Graph Management
+```http
+POST /api/jsondata/save    # Save graph configuration
+GET  /api/jsondata/all     # Get user's saved graphs
+GET  /api/jsondata/{id}    # Get specific graph
+```
 
-#### Authentication Service
-
-```typescript
-@Injectable({ providedIn: 'root' })
-export class AuthService {
-  private baseUrl = 'http://localhost:8080/api';
-
-  constructor(private http: HttpClient) {}
-
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
-      tap((res: any) => {
-        const fullToken = `${res.tokenType} ${res.accessToken}`;
-        localStorage.setItem('token', fullToken);
-      })
-    );
-  }
-
-  register(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, user);
-  }
-}
+### Database Info
+```http
+GET    /api/dbdata       # Get all database connections
+POST   /api/dbdata       # Save database connection
+PUT    /api/dbdata/{id}  # Update database connection
+DELETE /api/dbdata/{id}  # Delete database connection
 ```
 
 ## 🧪 Testing with Postman
 
-### 1. Import Postman Collection
+### Authentication Flow
 
-Create a new Postman collection with the following requests:
-
-### 2. Authentication Endpoints
-
-#### Register User
-
-```http
+1. **Register User**
+```json
 POST http://localhost:8080/api/register
 Content-Type: application/json
 
@@ -266,19 +215,8 @@ Content-Type: application/json
 }
 ```
 
-**Expected Response:**
+2. **Login User**
 ```json
-{
-  "userId": 1,
-  "username": "testuser",
-  "email": "test@example.com",
-  "roles": ["ROLE_USER"]
-}
-```
-
-#### Login User
-
-```http
 POST http://localhost:8080/api/login
 Content-Type: application/json
 
@@ -288,277 +226,75 @@ Content-Type: application/json
 }
 ```
 
-**Expected Response:**
-```json
-{
-  "accessToken": "eyJhbGciOiJIUzUxMiJ9...",
-  "tokenType": "Bearer"
-}
-```
-
-### 3. Protected Endpoints (Require JWT Token)
-
-#### Get User Profile
-
+3. **Use Protected Endpoints**
 ```http
 GET http://localhost:8080/api/users/1
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
 ```
 
-#### Connect to External Database
-
-```http
-POST http://localhost:8080/api/dynamic-query/connect
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
-Content-Type: application/json
-
-{
-  "URL": "jdbc:postgresql://localhost:5432/testdb",
-  "Username": "testuser",
-  "Password": "testpass"
-}
-```
-
-#### Execute Dynamic Query
-
-```http
-POST http://localhost:8080/api/dynamic-query/execute-query
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
-Content-Type: application/json
-
-"SELECT * FROM employees LIMIT 10"
-```
-
-#### Save Graph Configuration
-
-```http
-POST http://localhost:8080/api/jsondata/save
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
-Content-Type: application/json
-
-{
-  "chartType": "bar",
-  "coordinates": "{\"xAxis\":\"month\",\"yAxis\":\"sales\",\"email\":\"test@example.com\"}"
-}
-```
-
-#### Get Saved Graphs
-
-```http
-GET http://localhost:8080/api/jsondata/all
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
-```
-
-### 4. Postman Environment Variables
-
-Create environment variables in Postman:
-
-```json
-{
-  "baseUrl": "http://localhost:8080/api",
-  "token": "Bearer eyJhbGciOiJIUzUxMiJ9...",
-  "userId": "1"
-}
-```
-
-### 5. Postman Test Scripts
-
-Add test scripts to validate responses:
-
-```javascript
-// For Login endpoint
-pm.test("Status code is 200", function () {
-    pm.response.to.have.status(200);
-});
-
-pm.test("Response has token", function () {
-    var jsonData = pm.response.json();
-    pm.expect(jsonData).to.have.property('accessToken');
-    pm.environment.set("token", "Bearer " + jsonData.accessToken);
-});
-
-// For protected endpoints
-pm.test("Authentication successful", function () {
-    pm.response.to.have.status(200);
-    pm.response.to.not.have.status(401);
-});
-```
-
-## 🔄 Application Flow
-
-### 1. User Registration & Authentication
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant B as Backend
-    participant D as Database
-
-    U->>F: Register/Login
-    F->>B: POST /api/register or /api/login
-    B->>D: Save/Validate user
-    D-->>B: User data
-    B-->>F: JWT Token
-    F->>F: Store token in localStorage
-    F-->>U: Redirect to dashboard
-```
-
-### 2. Database Connection & Query Execution
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant B as Backend
-    participant E as External DB
-
-    U->>F: Enter DB credentials
-    F->>B: POST /api/dynamic-query/connect
-    B->>E: Test connection
-    E-->>B: Connection success
-    B-->>F: Connection established
-    
-    U->>F: Enter SQL query
-    F->>B: POST /api/dynamic-query/execute-query
-    B->>E: Execute query
-    E-->>B: Query results
-    B-->>F: JSON data
-    F->>F: Display results & generate charts
-```
-
-### 3. Chart Generation & Persistence
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend
-    participant B as Backend
-    participant D as Database
-
-    U->>F: Configure chart (type, axes)
-    F->>F: Generate chart with AG Charts
-    U->>F: Save chart
-    F->>B: POST /api/jsondata/save
-    B->>D: Save chart configuration
-    D-->>B: Save confirmation
-    B-->>F: Success response
-    F-->>U: Chart saved notification
-```
-
-## 🚦 API Endpoints
-
-### Authentication
-- `POST /api/register` - User registration
-- `POST /api/login` - User login
-
-### User Management
-- `GET /api/users/{id}` - Get user by ID
-- `POST /api/users` - Create user
-- `PUT /api/users/{id}/role` - Assign roles
-
-### Database Operations
-- `POST /api/dynamic-query/connect` - Connect to external database
-- `POST /api/dynamic-query/execute-query` - Execute SQL query
-
-### Graph Management
-- `POST /api/jsondata/save` - Save graph configuration
-- `GET /api/jsondata/all` - Get user's saved graphs
-- `GET /api/jsondata/{id}` - Get specific graph
-
-### Database Info
-- `GET /api/dbdata` - Get all database connections
-- `POST /api/dbdata` - Save database connection
-- `PUT /api/dbdata/{id}` - Update database connection
-- `DELETE /api/dbdata/{id}` - Delete database connection
-
 ## 🔒 Security Features
 
-### 1. JWT Authentication
+### JWT Authentication
 - Stateless authentication using JSON Web Tokens
-- Token expiration (24 hours by default)
+- 24-hour token expiration (configurable)
 - Secure token storage in localStorage
 
-### 2. Password Security
-- BCrypt password hashing
+### Password Security
+- BCrypt password hashing with salt
 - Minimum password requirements enforced
+- Secure password reset functionality
 
-### 3. Role-Based Access Control
+### Role-Based Access Control
 - USER and ADMIN roles
 - Method-level security annotations
-- Protected endpoints
+- Protected API endpoints
 
-### 4. CORS Configuration
+### CORS Configuration
 - Configured for Angular frontend
 - Credentials allowed for authenticated requests
+- Secure cross-origin resource sharing
 
-## 🎨 Frontend Features
+## 📊 Chart Types & Visualization
 
-### 1. Dashboard
-- Modern sidebar navigation
-- Responsive design
-- Real-time metrics display
-- Interactive charts
+### Supported Chart Types
+- **📊 Bar Charts**: Perfect for comparing categories
+- **📈 Line Charts**: Ideal for showing trends over time
+- **📉 Area Charts**: Great for displaying cumulative data
 
-### 2. Chart Visualization
-- AG Charts integration
-- Support for Bar, Line, and Area charts
-- Dynamic data binding
-- Save/load functionality
-
-### 3. Database Management
-- Dynamic database connection
-- SQL query execution
-- Result table display
-- Error handling
+### Chart Features
+- Interactive tooltips and legends
+- Responsive design for all screen sizes
+- Export functionality (PNG, SVG, PDF)
+- Real-time data updates
+- Customizable colors and themes
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### Common Issues & Solutions
 
-#### 1. CORS Errors
+#### CORS Errors
 ```
-Access to XMLHttpRequest at 'http://localhost:8080/api/login' from origin 'http://localhost:4200' has been blocked by CORS policy
+Access to XMLHttpRequest blocked by CORS policy
 ```
+**Solution**: Verify CORS configuration in `SecurityConfig.java`
 
-**Solution:** Ensure CORS is properly configured in `SecurityConfig.java`
-
-#### 2. JWT Token Issues
+#### JWT Token Issues
 ```
 401 Unauthorized - Invalid JWT token
 ```
+**Solution**: Check token format and expiration in browser localStorage
 
-**Solution:** Check token format and expiration in browser localStorage
-
-#### 3. Database Connection Issues
+#### Database Connection Issues
 ```
 Connection refused to localhost:5432
 ```
+**Solution**: Ensure PostgreSQL is running and credentials are correct
 
-**Solution:** Ensure PostgreSQL is running and credentials are correct
-
-#### 4. Angular Build Issues
+#### Angular Build Issues
 ```
 Module not found: Error: Can't resolve 'ag-charts-angular'
 ```
-
-**Solution:** Run `npm install` to install all dependencies
-
-## 📝 Development Guidelines
-
-### Backend Development
-1. Follow Spring Boot best practices
-2. Use proper exception handling
-3. Implement proper logging
-4. Write unit tests for services
-5. Use DTOs for API responses
-
-### Frontend Development
-1. Follow Angular style guide
-2. Use TypeScript strictly
-3. Implement proper error handling
-4. Use reactive programming with RxJS
-5. Maintain component separation
+**Solution**: Run `npm install` to install all dependencies
 
 ## 🚀 Deployment
 
@@ -576,50 +312,80 @@ java -jar target/ReportingApp-0.0.1-SNAPSHOT.jar
 # Build for production
 ng build --prod
 
-# Serve static files
 # Deploy dist/ folder to web server
 ```
 
-## 📊 Performance Considerations
+## 📈 Performance Optimization
 
-1. **Database Indexing**: Add indexes on frequently queried columns
-2. **Connection Pooling**: Configure HikariCP for optimal database connections
-3. **Caching**: Implement Redis for session management
-4. **Lazy Loading**: Use Angular lazy loading for large modules
-5. **Chart Optimization**: Limit data points for better performance
+### Database Optimization
+- **Indexing**: Add indexes on frequently queried columns
+- **Connection Pooling**: HikariCP configuration for optimal performance
+- **Query Optimization**: Efficient SQL queries and pagination
+
+### Frontend Optimization
+- **Lazy Loading**: Angular modules loaded on demand
+- **Chart Performance**: Optimized data rendering for large datasets
+- **Caching**: Strategic caching of API responses
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+We welcome contributions! Please follow these steps:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+
+#### Backend Development
+- Follow Spring Boot best practices
+- Use proper exception handling
+- Implement comprehensive logging
+- Write unit tests for all services
+- Use DTOs for API responses
+
+#### Frontend Development
+- Follow Angular style guide
+- Use TypeScript strictly
+- Implement proper error handling
+- Use reactive programming with RxJS
+- Maintain component separation
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
 
-## 👥 Authors
+## 👥 Authors & Contributors
 
 - **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
 
 ## 🙏 Acknowledgments
 
-- Spring Boot team for the excellent framework
-- Angular team for the powerful frontend framework
-- AG Charts for the visualization library
-- PostgreSQL team for the robust database system
+- **Spring Boot Team** - For the excellent framework
+- **Angular Team** - For the powerful frontend framework
+- **AG Charts** - For the amazing visualization library
+- **PostgreSQL Team** - For the robust database system
+- **Community Contributors** - For their valuable feedback and contributions
+
+## 📞 Support & Contact
+
+If you need help or have questions:
+
+1. 📖 Check the [Documentation](https://github.com/yourusername/Widget-Visualizer/wiki)
+2. 🔍 Search [Existing Issues](https://github.com/yourusername/Widget-Visualizer/issues)
+3. 🆕 Create a [New Issue](https://github.com/yourusername/Widget-Visualizer/issues/new)
+4. 💬 Join our [Discord Community](https://discord.gg/widget-visualizer)
 
 ---
 
-## 📞 Support
+<div align="center">
 
-If you have any questions or need help with setup, please:
+**⭐ Star this repository if you found it helpful!**
 
-1. Check the troubleshooting section
-2. Search existing issues on GitHub
-3. Create a new issue with detailed information
-4. Contact the development team
+Made with ❤️ by the Widget-Visualizer Team
 
-**Happy Coding! 🚀**
+[🌐 Website](https://widget-visualizer.com) • [📚 Documentation](https://docs.widget-visualizer.com) • [🐛 Report Bug](https://github.com/yourusername/Widget-Visualizer/issues) • [💡 Request Feature](https://github.com/yourusername/Widget-Visualizer/issues)
+
+</div>
