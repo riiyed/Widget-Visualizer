@@ -1,0 +1,34 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2 class="form-title">Register</h2>
+
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <label>Username</label>
+        <input class="form-control" type="text" name="username" [(ngModel)]="user.username" required />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" type="email" name="email" [(ngModel)]="user.email" required />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" type="password" name="password" [(ngModel)]="user.password" required />
+      </div>
+
+      <div class="form-group">
+        <label>Role</label>
+        <select class="form-control" name="role" [(ngModel)]="user.role" required>
+          <option value="ROLE_USER">User</option>
+          <option value="ROLE_ADMIN">Admin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+
+    <p>Already registered? <a routerLink="/login">Login now</a></p>
+  </div>
+</div>

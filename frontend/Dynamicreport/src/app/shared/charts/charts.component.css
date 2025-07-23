@@ -1,0 +1,182 @@
+.graph-visualizer-wrapper {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 20px;
+  background-color: #f5f6fa;
+  border-radius: 14px;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  margin-bottom: 10px;
+}
+
+.control-panel {
+  display: flex;
+  gap: 10px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.form-group {
+  flex: 1 1 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.form-control {
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3498db;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.btn {
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover:enabled {
+  background-color: #2573b3;
+}
+
+.btn-primary:disabled {
+  background-color: #a6c8f5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #626f70;
+}
+
+.graph-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* exactly 3 columns */
+  gap: 16px;
+}
+
+.graph-card {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.graph-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #222;
+}
+
+.chart-box {
+  width: 100%;
+  height: 220px; /* smaller height */
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.chart-content {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.graph-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.icons .icon-file:hover {
+  color: #3498db;
+}
+
+.icons .icon-trash:hover {
+  color: #e74c3c;
+}
+.icon-trash::before {
+  content: "🗑️";
+  margin-right: 6px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.icon-file::before {
+  content: "📁";
+  margin-right: 6px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.icon-trash,
+.icon-file {
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  font-size: 0;
+}
+
+.icon-trash::before,
+.icon-file::before {
+  font-size: 18px; 
+  font-size: initial; 
+}

@@ -1,0 +1,47 @@
+<div class="form-container">
+  <form class="form-card" (ngSubmit)="executeQuery()" #queryForm="ngForm">
+    <h2 class="form-title">Query</h2>
+
+    <div class="form-group">
+      <label for="query">Enter Query</label>
+      <textarea
+        id="query"
+        class="form-control"
+        name="query"
+        [(ngModel)]="query"
+        required>
+      </textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="queryForm.invalid">Run Query</button>
+
+    
+    <div *ngIf="result && result.length > 0" class="result-table-container">
+      <h3>Result:</h3>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th *ngFor="let key of result[0] | keyvalue">{{ key.key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of result">
+            <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+      <div class="chart-generate">
+        <h3>Generate Graph:</h3>
+        <button type="button" class="submit-btn" (click)="goToGraphPage()">Generate Graph</button>
+      </div>
+    </div>
+
+    
+    <div *ngIf="result && result.length === 0">
+      <p>No data found.</p>
+    </div>
+    
+  </form>
+</div>

@@ -1,0 +1,180 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Widgets</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-item active" (click)="navigateToPage('/dashboard')">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </div>
+      <div class="nav-item" (click)="navigateToPage('/dashboard/charts')">
+        <span class="nav-icon">📈</span>
+        <span class="nav-text">Graphs</span>
+        <span class="nav-count">3</span>
+      </div>
+    </nav>
+
+    <div class="nav-section">
+      <div class="section-title">USER INTERFACE</div>
+      <div class="nav-item" *ngFor="let item of userInterfaceItems">
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-text">{{ item.name }}</span>
+        <span class="nav-count">1</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="section-title">DEVELOP</div>
+      <div class="nav-item" *ngFor="let item of developItems">
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-text">{{ item.name }}</span>
+        <span class="nav-count">1</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="section-title">PAGES</div>
+      <div class="nav-item" *ngFor="let item of pageItems" 
+           (click)="navigateToPage(item.route); setActiveItem(item, pageItems)">
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-text">{{ item.name }}</span>
+        <span class="nav-count">1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-input">
+        <button class="search-btn">🔍</button>
+      </div>
+      <div class="header-actions">
+        <div class="user-profile">
+          <div class="animated-avatar">
+            <div class="avatar-ring"></div>
+            <span class="avatar-text">A</span>
+          </div>
+          <span class="username">Anushka</span>
+        </div>
+        <button class="notifications">🔔</button>
+        <button class="menu-btn">☰</button>
+      </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <div class="dashboard-header">
+        <div class="header-content">
+          <h1>Loan Analytics Dashboard</h1>
+          <p>Welcome <strong>Anushka</strong>, here are your comprehensive loan data insights.</p>
+        </div>
+        <div class="dashboard-actions">
+          <button class="settings-btn" (click)="refreshChartData()">🔄 Refresh Data</button>
+          <select class="time-filter">
+            <option>Last 6 Months</option>
+            <option>Last Year</option>
+            <option>All Time</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>{{ pendingOrders }}</h3>
+            <span class="metric-icon">⏳</span>
+          </div>
+          <p class="metric-label">Pending Applications</p>
+          <a href="#" class="metric-link">View all applications →</a>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>{{ newCustomers }}</h3>
+            <span class="metric-icon">👥</span>
+          </div>
+          <p class="metric-label">New Borrowers</p>
+          <a href="#" class="metric-link">View all borrowers →</a>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>{{ messages }}</h3>
+            <span class="metric-icon">💬</span>
+          </div>
+          <p class="metric-label">Support Tickets</p>
+          <a href="#" class="metric-link">View all tickets →</a>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <h3>{{ conversionRate }}%</h3>
+            <span class="metric-icon">✅</span>
+          </div>
+          <p class="metric-label">Approval Rate</p>
+          <a href="#" class="metric-link">View statistics →</a>
+        </div>
+      </div>
+
+      <!-- Simplified Charts Section with 3 Charts Only -->
+      <div class="charts-grid">
+        <!-- Bar Chart - Takes full width -->
+        <div class="chart-row">
+          <div class="chart-card full-width">
+            <div class="chart-header">
+              <h3>Monthly Loan Amounts (Bar Chart)</h3>
+              <div class="chart-controls">
+                <button class="chart-btn active">Amount</button>
+                <button class="chart-btn">Volume</button>
+              </div>
+            </div>
+            <div class="chart-content">
+              <ag-charts [options]="loanAmountChart" class="ag-chart"></ag-charts>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line and Area Charts - Side by side -->
+        <div class="chart-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Approval Trends (Line Chart)</h3>
+              <div class="chart-controls">
+                <button class="chart-btn active">Trends</button>
+                <button class="chart-btn">Details</button>
+              </div>
+            </div>
+            <div class="chart-content">
+              <ag-charts [options]="approvalRateChart" class="ag-chart"></ag-charts>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Performance Overview (Area Chart)</h3>
+              <div class="chart-controls">
+                <button class="chart-btn active">Area</button>
+                <button class="chart-btn">Line</button>
+              </div>
+            </div>
+            <div class="chart-content">
+              <ag-charts [options]="performanceOverviewChart" class="ag-chart"></ag-charts>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Router Outlet for Child Routes -->
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

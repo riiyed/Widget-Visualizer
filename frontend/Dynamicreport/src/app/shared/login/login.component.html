@@ -1,0 +1,29 @@
+<div class="container">
+  
+  <h3>Login</h3>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+[(ngModel)]="loginData.email"
+      required
+    />
+ 
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="loginData.password"
+      required
+    />
+ 
+    <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+  </form>
+ 
+  <div class="register-link">
+    Not registered? <a routerLink="/register">Create an account</a>
+  </div>
+</div>
