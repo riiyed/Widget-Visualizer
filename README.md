@@ -75,7 +75,7 @@ cd Widget-Visualizer
 ```sql
 -- Connect to PostgreSQL as superuser
 CREATE DATABASE postgres;
-CREATE USER postgres WITH PASSWORD 'System@123';
+CREATE USER postgres WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
 ```
 
@@ -94,8 +94,8 @@ Update `src/main/resources/application.properties`:
 ```properties
 # Database Configuration
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
-spring.datasource.username=postgres
-spring.datasource.password=System@123
+spring.datasource.username=username
+spring.datasource.password=password
 
 # JWT Configuration
 app.jwt-secret=bXlTdXBlclNlY3JldEtleU15U3VwZXJTZWNyZXRLZXlNeVN1cGVyU2VjcmV0S2V5MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=
